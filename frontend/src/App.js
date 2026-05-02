@@ -9,6 +9,7 @@ import AddProvider from "@/pages/AddProvider";
 import AiSearch from "@/pages/AiSearch";
 import MapView from "@/pages/MapView";
 import BestValue from "@/pages/BestValue";
+import OutreachAgents from "@/pages/OutreachAgents";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/search" element={<AiSearch />} />
             <Route path="/map" element={<MapView />} />
             <Route path="/best-value" element={<BestValue />} />
+            <Route path="/outreach" element={<OutreachAgents />} />
           </Routes>
         </Layout>
       </BrowserRouter>
