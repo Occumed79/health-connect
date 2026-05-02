@@ -1,0 +1,22 @@
+import axios from "axios";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+export const API = `${BACKEND_URL}/api`;
+export const api = axios.create({ baseURL: API });
+
+export const listProviders = (params) => api.get("/providers", { params }).then((r) => r.data);
+export const getProvider = (id) => api.get(`/providers/${id}`).then((r) => r.data);
+export const createProvider = (data) => api.post("/providers", data).then((r) => r.data);
+export const updateProvider = (id, data) => api.put(`/providers/${id}`, data).then((r) => r.data);
+export const deleteProvider = (id) => api.delete(`/providers/${id}`).then((r) => r.data);
+export const toggleFavorite = (id) => api.post(`/providers/${id}/favorite`).then((r) => r.data);
+export const bulkCreate = (items) => api.post("/providers/bulk", items).then((r) => r.data);
+export const getStats = () => api.get("/providers/stats").then((r) => r.data);
+export const getBestValue = () => api.get("/providers/best-value").then((r) => r.data);
+export const extractFromFile = (file) => {
+  const fd = new FormData();
+  fd.append("file", file);
+  return api.post("/extract", fd, { headers: { "Content-Type": "multipart/form-data" } }).then((r) => r.data);
+};
+export const aiSearch = (query) => api.post("/search/ai", { query }).then((r) => r.data);
+export const exportCsvUrl = `${API}/export/csv`;
