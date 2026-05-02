@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, Database, Upload, Plus, Sparkles, MapPinned, Trophy, Stethoscope } from "lucide-react";
+import { LayoutDashboard, Database, Upload, Plus, Sparkles, MapPinned, Trophy, Stethoscope, BotMessageSquare } from "lucide-react";
 
 const items = [
   { to: "/", icon: LayoutDashboard, label: "Overview", testid: "nav-dashboard" },
   { to: "/providers", icon: Database, label: "Providers", testid: "nav-providers" },
+  { to: "/outreach", icon: BotMessageSquare, label: "Outreach Agents", testid: "nav-outreach" },
   { to: "/map", icon: MapPinned, label: "Map", testid: "nav-map" },
   { to: "/best-value", icon: Trophy, label: "Best Value", testid: "nav-best-value" },
   { to: "/search", icon: Sparkles, label: "AI Search", testid: "nav-search" },
