@@ -173,16 +173,16 @@ export default function OutreachAgents() {
         <section className="glass p-6">
           <div className="label-overline mb-4">Clinic target</div>
           <div className="grid md:grid-cols-2 gap-3 mb-3">
-            <input className="input-dark" placeholder="Clinic name" value={form.clinic_name} onChange={(e) => setField("clinic_name", e.target.value)} data-testid="clinic-name-input" />
-            <input className="input-dark" placeholder="Contact name, optional" value={form.contact_name} onChange={(e) => setField("contact_name", e.target.value)} />
-            <input className="input-dark" placeholder="Email" value={form.email} onChange={(e) => setField("email", e.target.value)} />
-            <input className="input-dark" placeholder="WhatsApp number" value={form.whatsapp} onChange={(e) => setField("whatsapp", e.target.value)} />
-            <input className="input-dark" placeholder="City" value={form.city} onChange={(e) => setField("city", e.target.value)} />
-            <input className="input-dark" placeholder="Country" value={form.country} onChange={(e) => setField("country", e.target.value)} />
+            <input className="input-glass" placeholder="Clinic name" value={form.clinic_name} onChange={(e) => setField("clinic_name", e.target.value)} data-testid="clinic-name-input" />
+            <input className="input-glass" placeholder="Contact name, optional" value={form.contact_name} onChange={(e) => setField("contact_name", e.target.value)} />
+            <input className="input-glass" placeholder="Email" value={form.email} onChange={(e) => setField("email", e.target.value)} />
+            <input className="input-glass" placeholder="WhatsApp number" value={form.whatsapp} onChange={(e) => setField("whatsapp", e.target.value)} />
+            <input className="input-glass" placeholder="City" value={form.city} onChange={(e) => setField("city", e.target.value)} />
+            <input className="input-glass" placeholder="Country" value={form.country} onChange={(e) => setField("country", e.target.value)} />
           </div>
-          <input className="input-dark mb-3" placeholder="Language" value={form.language} onChange={(e) => setField("language", e.target.value)} />
-          <textarea className="input-dark min-h-[90px] mb-3" placeholder="Services needed" value={form.services_needed} onChange={(e) => setField("services_needed", e.target.value)} />
-          <textarea className="input-dark min-h-[120px] mb-4" placeholder="Context / instructions" value={form.context} onChange={(e) => setField("context", e.target.value)} />
+          <input className="input-glass mb-3" placeholder="Language" value={form.language} onChange={(e) => setField("language", e.target.value)} />
+          <textarea className="input-glass min-h-[90px] mb-3" placeholder="Services needed" value={form.services_needed} onChange={(e) => setField("services_needed", e.target.value)} />
+          <textarea className="input-glass min-h-[120px] mb-4" placeholder="Context / instructions" value={form.context} onChange={(e) => setField("context", e.target.value)} />
           <button className="btn-primary inline-flex items-center gap-2" onClick={generateDraft} disabled={loading} data-testid="generate-outreach-draft">
             <Wand2 size={15} strokeWidth={1.5} /> {loading ? "Working…" : "Generate Outreach Draft"}
           </button>
@@ -208,7 +208,7 @@ export default function OutreachAgents() {
       <div className="grid xl:grid-cols-2 gap-6 mt-6">
         <section className="glass p-6">
           <div className="label-overline mb-4">Paste clinic reply</div>
-          <textarea className="input-dark min-h-[220px] mb-4" placeholder="Paste the clinic's email or WhatsApp reply here..." value={replyText} onChange={(e) => setReplyText(e.target.value)} data-testid="clinic-reply-input" />
+          <textarea className="input-glass min-h-[220px] mb-4" placeholder="Paste the clinic's email or WhatsApp reply here..." value={replyText} onChange={(e) => setReplyText(e.target.value)} data-testid="clinic-reply-input" />
           <div className="flex flex-wrap gap-2">
             <button className="btn-primary" onClick={parseReply} disabled={loading}>Analyze Reply</button>
             <button className="btn-ghost" onClick={generateFollowup} disabled={loading}>Draft Follow-Up</button>
