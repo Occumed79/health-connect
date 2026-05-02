@@ -20,3 +20,11 @@ export const extractFromFile = (file) => {
 };
 export const aiSearch = (query) => api.post("/search/ai", { query }).then((r) => r.data);
 export const exportCsvUrl = `${API}/export/csv`;
+
+export const listOutreachThreads = (params) => api.get("/outreach/threads", { params }).then((r) => r.data);
+export const createOutreachThread = (data) => api.post("/outreach/threads", data).then((r) => r.data);
+export const updateOutreachThread = (id, data) => api.put(`/outreach/threads/${id}`, data).then((r) => r.data);
+export const draftOutreachMessage = (data) => api.post("/outreach/draft", data).then((r) => r.data);
+export const logOutreachMessage = (data) => api.post("/outreach/messages", data).then((r) => r.data);
+export const parseOutreachReply = (data) => api.post("/outreach/replies/parse", data).then((r) => r.data);
+export const draftOutreachFollowup = (data) => api.post("/outreach/followup/draft", data).then((r) => r.data);
