@@ -7,6 +7,7 @@ from typing import List, Optional, Any, Dict
 from datetime import datetime, timezone
 from pathlib import Path
 from dotenv import load_dotenv
+from outreach_automation import outreach_router
 import os, uuid, csv, io, json, re, logging
 
 ROOT_DIR = Path(__file__).parent
@@ -227,14 +228,7 @@ async def root():
     return {"message": "Medical Provider Intelligence API", "status": "ok"}
 
 @api_router.get("/providers")
-async def list_providers(
-    q: Optional[str] = None,
-    specialty: Optional[str] = None,
-    city: Optional[str] = None,
-    state: Optional[str] = None,
-    favorite: Optional[bool] = None,
-    limit: int = Query(50, ge=1, le=1000),
-):
+async def list_providers(q: Optional[str] = None, specialty: Optional[str] = None, city: Optional[str] = None, state: Optional[str] = None, favorite: Optional[bool] = None, limit: int = Query(50, ge=1, le=1000)):
     docs = await db.providers.find(query_filter(q, specialty, city, state, favorite), {"_id": 0}).sort("created_at", -1).to_list(limit)
     return [clean_doc(d) for d in docs]
 
@@ -384,13 +378,8 @@ async def export_csv():
     return StreamingResponse(iter([output.getvalue()]), media_type="text/csv", headers={"Content-Disposition":"attachment; filename=providers.csv"})
 
 app.include_router(api_router)
-app.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=os.environ.get("CORS_ORIGINS", "*").split(","),
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+app.include_router(outreach_router, prefix="/api")
+app.add_middleware(CORSMiddleware, allow_credentials=True, allow_origins=os.environ.get("CORS_ORIGINS", "*").split(","), allow_methods=["*"], allow_headers=["*"])
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
