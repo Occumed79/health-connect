@@ -28,3 +28,14 @@ export const draftOutreachMessage = (data) => api.post("/outreach/draft", data).
 export const logOutreachMessage = (data) => api.post("/outreach/messages", data).then((r) => r.data);
 export const parseOutreachReply = (data) => api.post("/outreach/replies/parse", data).then((r) => r.data);
 export const draftOutreachFollowup = (data) => api.post("/outreach/followup/draft", data).then((r) => r.data);
+export const getOutreachConfigStatus = () => api.get("/outreach/config/status").then((r) => r.data);
+export const getAutomationSettings = () => api.get("/outreach/automation/settings").then((r) => r.data);
+export const updateAutomationSettings = (data) => api.put("/outreach/automation/settings", data).then((r) => r.data);
+export const listOutreachQueue = (params) => api.get("/outreach/queue", { params }).then((r) => r.data);
+export const queueOutreach = (data) => api.post("/outreach/queue", data).then((r) => r.data);
+export const approveOutreachQueueItem = (id, data) => api.post(`/outreach/queue/${id}/approve`, data).then((r) => r.data);
+export const sendOutreachQueueItem = (id) => api.post(`/outreach/queue/${id}/send`).then((r) => r.data);
+export const sendOutreachNow = (data) => api.post("/outreach/send", data).then((r) => r.data);
+export const getThreadMessages = (id) => api.get(`/outreach/threads/${id}/messages`).then((r) => r.data);
+export const ingestInboundMessage = (data) => api.post("/outreach/inbound", data).then((r) => r.data);
+export const runOutreachAutomationOnce = (limit = 10) => api.post("/outreach/automation/run", null, { params: { limit } }).then((r) => r.data);
